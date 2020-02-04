@@ -41,21 +41,31 @@ function barChart(chartInfo) {
     var barLabels = chartInfo.otu_labels.slice(0, 10).reverse();
     var yData = chartInfo.otu_ids.map(row => `OTU ${row}`).slice(0, 10).reverse();
 //chart layout
-    var data = {
-        type: "bar",
-        x: xData,
-        y: yData,
-        text: barLabels,
-        orientation: 'h'
-    };
-    var layout = {
-        title: "Top 10 OTU"
-    };
+var trace = {
+    title: "Top 10 OTU",
+    type: "bar",
+    x: xData,
+    y: yData,
+    text: barLabels,
+    orientation: 'h'
+};
+var data = [trace];
 
-    //remove top padding
-    Plotly.newPlot("bar", data, layout, {
-        displayModeBar: false
-    });
+var layout = {
+    title: "Top 10 OTU",
+    yaxis:{
+        tickmode:"linear",
+    },
+    margin: {
+        l: 100,
+        r: 100,
+        t: 100,
+        b: 30
+    }
+};
+
+//Remove top padding
+Plotly.newPlot("bar", data, layout);
 }
 
 //function to capture the value to draw a Bubble Chart
