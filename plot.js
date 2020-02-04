@@ -16,7 +16,7 @@ function readJson() {
 
         if(data.names.length > 0)
         {
-            optionChange(data.names[0]);
+            optionChanged(data.names[0]);
         }
     });
 }
@@ -88,7 +88,7 @@ function bubbleChart(chartInfo) {
 
 
 //function to change values when name change under drop down
-function optionChange(value) {
+function optionChanged(value) {
 
     var demographics = window.rawData.metadata.find(data => data.id === Number(value));
     getMetadata(demographics);
