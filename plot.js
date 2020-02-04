@@ -1,7 +1,6 @@
-//read the json
 //read the names from Json to be part of DropDown menu
 
-function init() {
+function readJson() {
     var url = "samples.json";
     d3.json(url).then(function (data) {
         window.rawData = data;
@@ -22,11 +21,11 @@ function init() {
     });
 }
 
-init();
+readJson();
 
 
 //function to get values from Metadata on the basis of 
-function demographicsPanel(demographics) {
+function getMetadata(demographics) {
     var newPanel = d3.select("#sample-metadata");
     newPanel.html("");
     Object.entries(demographics).forEach(([key, value]) => {
@@ -44,6 +43,7 @@ function barChart(chartInfo) {
 //chart layout
     var trace = {
         type: "bar",
+        title: "Top 10 OTU",
         x: xData,
         y: yData,
         text: barLabels,
@@ -58,7 +58,7 @@ function barChart(chartInfo) {
 }
 
 //Function to capture the value to draw a Bubble Chart
-function drawBubbleChart(chartInfo) {
+function bubbleChart(chartInfo) {
     var xData = chartInfo.otu_ids;
     var yData = chartInfo.sample_values;
     var barLabels = chartInfo.otu_labels;
@@ -88,14 +88,14 @@ function drawBubbleChart(chartInfo) {
 
 
 //function to change values when name change under drop down
-function optionChanged(value) {
+function optionChange(value) {
 
     var demographics = window.rawData.metadata.find(data => data.id === Number(value));
-    demographicsPanel(demographics);
+    getMetadata(demographics);
 
     var chartInfo = window.rawData.samples.find(data => data.id === value);
 
     barChart(chartInfo);
-    drawBubbleChart(chartInfo);
+    bubbleChart(chartInfo);
    
 }
