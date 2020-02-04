@@ -5,7 +5,7 @@ function readJson() {
     d3.json(url).then(function (data) {
         window.rawData = data;
 
-        // Select values for drop down
+        //select values for drop down
         var dropDown = d3.select("#selDataset");
         nameValue = dropDown.selectAll('option')
             .data(data.names)
@@ -35,7 +35,7 @@ function getMetadata(demographics) {
     });
 }
 
-//Function to capture the value to draw a Bar Chart
+//function to capture the value to draw a Bar Chart
 function barChart(chartInfo) {
     var xData = chartInfo.sample_values.slice(0, 10).reverse();
     var barLabels = chartInfo.otu_labels.slice(0, 10).reverse();
@@ -51,13 +51,13 @@ function barChart(chartInfo) {
     };
     var data = [trace];
 
-    //Remove top padding
+    //remove top padding
     Plotly.newPlot("bar", data, {}, {
         displayModeBar: false
     });
 }
 
-//Function to capture the value to draw a Bubble Chart
+//function to capture the value to draw a Bubble Chart
 function bubbleChart(chartInfo) {
     var xData = chartInfo.otu_ids;
     var yData = chartInfo.sample_values;
