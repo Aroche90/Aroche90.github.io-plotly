@@ -41,18 +41,19 @@ function barChart(chartInfo) {
     var barLabels = chartInfo.otu_labels.slice(0, 10).reverse();
     var yData = chartInfo.otu_ids.map(row => `OTU ${row}`).slice(0, 10).reverse();
 //chart layout
-    var trace = {
+    var data = {
         type: "bar",
-        title: "Top 10 OTU",
         x: xData,
         y: yData,
         text: barLabels,
         orientation: 'h'
     };
-    var data = [trace];
+    var layout = {
+        title: "Top 10 OTU"
+    };
 
     //remove top padding
-    Plotly.newPlot("bar", data, {}, {
+    Plotly.newPlot("bar", data, layout, {
         displayModeBar: false
     });
 }
@@ -78,7 +79,7 @@ function bubbleChart(chartInfo) {
     var data = [trace2];
 //chart layout
     var layout = {
-        title: 'Marker Size',
+        title: 'Bacteria Cultures Per Sample',
         showlegend: false,
         height: 600,
         width: 1200
