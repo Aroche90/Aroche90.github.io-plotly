@@ -16,7 +16,7 @@ function readJson() {
 
         if(data.names.length > 0)
         {
-            optionChanged(data.names[0]);
+            optionChange(data.names[0]);
         }
     });
 }
